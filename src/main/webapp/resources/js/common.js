@@ -9,7 +9,7 @@ function direct_view(path, file, param) {
 	$("input[name=param]").val(JSON.stringify(param));
 	$("input[name=path]").val("/" + path + "/" + file);
 	$("#frmNav").attr({
-		action : "direct_view.do",
+		action : "/stella/direct_view.do",
 		target : "_self"
 	});
 
