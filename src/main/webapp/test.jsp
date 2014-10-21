@@ -6,11 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta charset="utf-8">
 <title>Stella</title>
-
-<%@ include file="/WEB-INF/views/include/script.jsp" %>
-<%@ include file="/WEB-INF/views/include/css.jsp"%>
-
 </head>
+
 <body>
 	<header>
 		<h1>테스트 화면</h1>
@@ -27,5 +24,9 @@
 		</form>
 	</nav>
 	<%@include file="/WEB-INF/views/include/footer.jsp" %>
+	
+<%@ include file="/WEB-INF/views/include/script.jsp" %>
+<%@ include file="/WEB-INF/views/include/css.jsp"%>
+	
 </body>
 </html>

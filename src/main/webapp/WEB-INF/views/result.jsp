@@ -6,8 +6,27 @@
 <meta charset="utf-8">
 <title>Stella</title>
 
-<%@include file="/WEB-INF/views/include/script.jsp" %>
 <%@ include file="/WEB-INF/views/include/css.jsp"%>
+
+</head>
+
+<body>
+	<form id="frm" name="frm">
+
+		<input type="hidden" name="result" value="${result}" />
+		<input type="hidden" name="path" value="${path}" />
+		<input type="hidden" name="action" value="${action}" />
+		<input type="hidden" name="message" value="${message}" />
+		<input type="hidden" name="param" value="" />
+
+		<%-- <p>result  = ${result}</p> --%>
+		<%-- <p>path    = ${path}</p> --%>
+		<%-- <p>action  = ${action}</p> --%>
+		<%-- <p>message = ${message}</p> --%>
+
+	</form>
+
+<%@ include file="/WEB-INF/views/include/script.jsp" %>
 
 <script>
 	$("document").read(function() {
@@ -24,21 +43,6 @@
 		}
 	});
 </script>
-</head>
-<body>
-	<form id="frm" name="frm">
 
-		<input type="hidden" name="result" value="${result}" />
-		<input type="hidden" name="path" value="${path}" />
-		<input type="hidden" name="action" value="${action}" />
-		<input type="hidden" name="message" value="${message}" />
-		<input type="hidden" name="param" value="" />
-
-		<%-- <p>result  = ${result}</p> --%>
-		<%-- <p>path    = ${path}</p> --%>
-		<%-- <p>action  = ${action}</p> --%>
-		<%-- <p>message = ${message}</p> --%>
-
-	</form>
 </body>
 </html>

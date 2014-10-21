@@ -4,13 +4,16 @@
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/spring/root-context.xml</param-value>
   </context-param>
+  
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
   <servlet>
     <servlet-name>appServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -20,8 +23,41 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>appServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <!-- POST요청에 대한 파라미터 한글 인코딩 처리 -->
+  <filter>
+      <filter-name>Set Character Encoding</filter-name>
+      <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class> <!-- org.springframework.web.filter.CharacterEncodingFilter -->
+      <init-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+      </init-param>
+      <init-param>
+      	<param-name>ignore</param-name>
+      	<param-value>true</param-value>
+      </init-param>
+  </filter>
+  <filter-mapping>
+      <filter-name>Set Character Encoding</filter-name>
+      <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 아래 지정된 패턴(정적인 파일들)에 대해 Spring을 통하지 않도록 설정 -->
+  <servlet-mapping>
+      <servlet-name>default</servlet-name>
+      <url-pattern>*.js</url-pattern>
+      <url-pattern>*.gif</url-pattern>
+      <url-pattern>*.jpg</url-pattern>
+      <url-pattern>*.png</url-pattern>
+      <url-pattern>*.css</url-pattern>
+      <url-pattern>*.ico</url-pattern>
+      <url-pattern>*.txt</url-pattern>
+      <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

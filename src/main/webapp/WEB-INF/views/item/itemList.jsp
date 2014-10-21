@@ -6,8 +6,33 @@
 <meta charset="UTF-8">
 <title>Stella</title>
 
-<%@include file="/WEB-INF/views/include/script.jsp"%>
 <%@ include file="/WEB-INF/views/include/css.jsp"%>
+
+</head>
+
+<body>
+	<header>
+		<h1>상품 리스트 화면</h1>
+	</header>
+	<%@ include file="/WEB-INF/views/include/nav.jsp" %>
+	<section>
+		<form id="frm" method="POST">
+			<%@ include file="/WEB-INF/views/include/hidden.jsp"%>
+			<article>
+				<h2>상품 리스트 화면</h2>
+				<table id="list" border="1">
+					<tr class="header">
+						<th align="center" width="100">상품 ID</th>
+						<th align="center" width="320">상품 명</th>
+						<th align="center" width="100">가격(원)</th>
+					</tr>
+				</table>
+			</article>
+		</form>
+	</section>
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+
+<%@ include file="/WEB-INF/views/include/script.jsp"%>
 
 <script>
 	$("document").ready(function() {
@@ -86,27 +111,6 @@
 		
 	}
 </script>
-</head>
-<body>
-	<header>
-		<h1>상품 리스트 화면</h1>
-	</header>
-	<%@include file="/WEB-INF/views/include/nav.jsp" %>
-	<section>
-		<form id="frm" method="POST">
-			<%@include file="/WEB-INF/views/include/hidden.jsp"%>
-			<article>
-				<h2>상품 리스트 화면</h2>
-				<table id="list" border="1">
-					<tr class="header">
-						<th align="center" width="100">상품 ID</th>
-						<th align="center" width="320">상품 명</th>
-						<th align="center" width="100">가격(원)</th>
-					</tr>
-				</table>
-			</article>
-		</form>
-	</section>
-	<%@include file="/WEB-INF/views/include/footer.jsp"%>
+
 </body>
 </html>

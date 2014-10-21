@@ -46,7 +46,7 @@ public class BaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "direct_view.do", method = RequestMethod.POST)
+	@RequestMapping(value = "direct_view.do") //method = {RequestMethod.POST, RequestMethod.GET}
 	public String directView(HttpServletRequest request, Locale locale,
 			Model model) {
 		String path = request.getParameter("path");

@@ -6,8 +6,41 @@
 <meta charset="utf-8">
 <title>Setlla</title>
 
-<%@include file="/WEB-INF/views/include/script.jsp"%>
 <%@ include file="/WEB-INF/views/include/css.jsp"%>
+
+</head>
+
+<body>
+	<header>
+		<h1>상품 상세 화면</h1>
+	</header>
+	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
+	<section>
+		<form id="frm" method="POST">
+			<%@ include file="/WEB-INF/views/include/hidden.jsp"%>
+			<article>
+				<ol>
+					<li>
+						<img id="itemImage"/>
+					</li>
+					<li><label for="itemId">ID</label>
+						<input type="text" id="itemId" name="itemId" />
+					</li>
+					<li><label for="itemName">상품명</label>
+						<input type="text" id="itemName" name="itemName" />
+					</li>
+					<li><label for="price">가격</label>
+						<input type="text" id="price" name="price" />
+					</li>
+					<li><label for="description">설명</label>
+						<input type="text" id="description" name="description" />
+					</li>
+				</ol>
+			</article>
+		</form>
+	</section>
+
+<%@ include file="/WEB-INF/views/include/script.jsp"%>
 
 <script>
 	$("document").ready(function() {
@@ -53,35 +86,6 @@
 		}
 	}
 </script>
-</head>
-<body>
-	<header>
-		<h1>상품 상세 화면</h1>
-	</header>
-	<%@include file="/WEB-INF/views/include/nav.jsp"%>
-	<section>
-		<form id="frm" method="POST">
-			<%@include file="/WEB-INF/views/include/hidden.jsp"%>
-			<article>
-				<ol>
-					<li>
-						<img id="itemImage"/>
-					</li>
-					<li><label for="itemId">ID</label>
-						<input type="text" id="itemId" name="itemId" />
-					</li>
-					<li><label for="itemName">상품명</label>
-						<input type="text" id="itemName" name="itemName" />
-					</li>
-					<li><label for="price">가격</label>
-						<input type="text" id="price" name="price" />
-					</li>
-					<li><label for="description">설명</label>
-						<input type="text" id="description" name="description" />
-					</li>
-				</ol>
-			</article>
-		</form>
-	</section>
+	
 </body>
 </html>
