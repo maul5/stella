@@ -16,7 +16,7 @@
 	</header>
 	<%@ include file="/WEB-INF/views/include/nav.jsp" %>
 	<section>
-		<form id="frm" method="POST">
+		<form id="frm01" method="POST">
 			<%@ include file="/WEB-INF/views/include/hidden.jsp"%>
 			<article>
 				<h2>상품 리스트 화면</h2>

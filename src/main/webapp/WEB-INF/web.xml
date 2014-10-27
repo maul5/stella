@@ -50,14 +50,17 @@
   <!-- 아래 지정된 패턴(정적인 파일들)에 대해 Spring을 통하지 않도록 설정 -->
   <servlet-mapping>
       <servlet-name>default</servlet-name>
-      <url-pattern>*.js</url-pattern>
       <url-pattern>*.gif</url-pattern>
       <url-pattern>*.jpg</url-pattern>
       <url-pattern>*.png</url-pattern>
-      <url-pattern>*.css</url-pattern>
       <url-pattern>*.ico</url-pattern>
-      <url-pattern>*.txt</url-pattern>
+      <url-pattern>*.htm</url-pattern>
       <url-pattern>*.html</url-pattern>
+      <url-pattern>*.css</url-pattern>
+      <url-pattern>*.js</url-pattern>
+      <url-pattern>*.txt</url-pattern>
+      <url-pattern>*.php</url-pattern>
+      <url-pattern>*.asp</url-pattern>
   </servlet-mapping>
   
 </web-app>
