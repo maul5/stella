@@ -88,10 +88,10 @@ public class BaseController {
 
 		try {
 			resultList = baseDao.selectList(sqlid, param);
-			model.addAttribute("resultList", resultList);
+			//model.addAttribute("resultList", resultList);
 
-			JSONArray jsonList = new JSONArray(Util.ListToJson(resultList));
-			model.addAttribute("jsonList", jsonList); // Retun Json String
+			//JSONArray jsonArray = new JSONArray(Util.ListToJson(resultList));
+			//model.addAttribute("jsonArray", jsonArray); // Retun Json String
 
 			out = response.getWriter();
 			out.write(Util.ListToJson(resultList)); // Ajax Retun Json String
@@ -99,7 +99,7 @@ public class BaseController {
 			logger.error(ex.toString());
 		}
 
-		return request.getParameter("path");
+		return request.getParameter("path"); //ajax로 호출되면 path는 null이 됨
 	}
 
 	/**
@@ -130,8 +130,8 @@ public class BaseController {
 			param = Util.JsonToMap(jsonObject.toString());
 			sqls = String.valueOf(param.get("sqls")).split("§"); // § 문자로 분리
 		}
-		ArrayList list = new ArrayList();
-		List<Map<String, Object>> resultList = null;
+		ArrayList resultList = new ArrayList();
+		List<Map<String, Object>> list = null;
 
 		try {
 			if (sqls != null && sqls.length != 0) {
@@ -139,12 +139,10 @@ public class BaseController {
 				for (int i = 0; i < sqls.length; i++) {
 					logger.info("SQL ID = [" + sqlid + "]");
 					sqlid = sqls[i];
-					resultList = baseDao.selectList(sqlid, param);
-					list.add(i, resultList);
+					list = baseDao.selectList(sqlid, param);
+					resultList.add(i, list);
 				}
 			}
-
-			model.addAttribute("resultList", list);
 
 			out = response.getWriter();
 			out.write(Util.ListToJson(resultList)); // Ajax Retun Json String
@@ -176,7 +174,6 @@ public class BaseController {
 		response.setCharacterEncoding("UTF-8");
 
 		int iResult = 0;
-		PrintWriter out = null;
 
 		JSONObject jsonObject = new JSONObject(request.getParameter("param"));
 		Map<String, Object> param = Util.JsonToMap(jsonObject.toString());
@@ -190,9 +187,6 @@ public class BaseController {
 				model.addAttribute("path", request.getParameter("path"));
 				model.addAttribute("action", request.getParameter("action"));
 				model.addAttribute("message", "정상적으로 등록 되었습니다.");
-
-				out = response.getWriter();
-				out.write(Util.OneStringToJson("SUCCESS"));
 			}
 		} catch (Exception ex) {
 			logger.error(ex.toString());
@@ -221,7 +215,6 @@ public class BaseController {
 		response.setCharacterEncoding("UTF-8");
 
 		String sResult = "";
-		PrintWriter out = null;
 
 		JSONObject jsonObject = new JSONObject(request.getParameter("param"));
 		Map<String, Object> param = Util.JsonToMap(jsonObject.toString());
@@ -236,9 +229,7 @@ public class BaseController {
 				model.addAttribute("path", request.getParameter("path"));
 				model.addAttribute("action", request.getParameter("action"));
 				model.addAttribute("message", "정상적으로 등록 되었습니다.");
-
-				out = response.getWriter();
-				out.write(Util.OneStringToJson(sResult));
+				model.addAttribute("newKey", sResult);
 			}
 		} catch (Exception ex) {
 			logger.error(ex.toString());
@@ -268,7 +259,6 @@ public class BaseController {
 		response.setCharacterEncoding("UTF-8");
 
 		int iResult = 0;
-		PrintWriter out = null;
 
 		JSONObject jsonObject = new JSONObject(request.getParameter("param"));
 		Map<String, Object> param = Util.JsonToMap(jsonObject.toString());
@@ -282,9 +272,6 @@ public class BaseController {
 				model.addAttribute("path", request.getParameter("path"));
 				model.addAttribute("action", request.getParameter("action"));
 				model.addAttribute("message", "정상적으로 수정 되었습니다.");
-
-				out = response.getWriter();
-				out.write(Util.OneStringToJson("SUCCESS"));
 			}
 		} catch (Exception ex) {
 			logger.error(ex.toString());
@@ -330,7 +317,6 @@ public class BaseController {
 		response.setCharacterEncoding("UTF-8");
 
 		int iResult = 0;
-		PrintWriter out = null;
 
 		JSONObject jsonObject = new JSONObject(request.getParameter("param"));
 		Map<String, Object> param = Util.JsonToMap(jsonObject.toString());
@@ -344,9 +330,6 @@ public class BaseController {
 				model.addAttribute("path", request.getParameter("path"));
 				model.addAttribute("action", request.getParameter("action"));
 				model.addAttribute("message", "정상적으로 삭제 되었습니다.");
-
-				out = response.getWriter();
-				out.write(Util.OneStringToJson("SUCCESS"));
 			}
 		} catch (Exception ex) {
 			logger.error(ex.toString());
@@ -373,7 +356,8 @@ public class BaseController {
 	@RequestMapping(value = "grid_save/{sqlCid}/{sqlUid}/{sqlDid}", method = RequestMethod.POST)
 	public String gridSave(@PathVariable("sqlCid") String sqlCid,
 			@PathVariable("sqlUid") String sqlUid,
-			@PathVariable("sqlDid") String sqlDid, HttpServletRequest request,
+			@PathVariable("sqlDid") String sqlDid,
+			HttpServletRequest request, HttpServletResponse response,
 			Locale locale, Model model) {
 		logger.info("grid_save/" + sqlCid + "/" + sqlUid + "/" + sqlDid
 				+ ".do");
@@ -420,7 +404,6 @@ public class BaseController {
 		response.setCharacterEncoding("UTF-8");
 
 		int iResult = 0;
-		PrintWriter out = null;
 
 		try {
 			if (request.getParameter("param").trim().equals("") != true) {
@@ -435,9 +418,6 @@ public class BaseController {
 					model.addAttribute("path", request.getParameter("path"));
 					model.addAttribute("action", request.getParameter("action"));
 					model.addAttribute("message", "정상적으로 등록 되었습니다.");
-
-					out = response.getWriter();
-					out.write(Util.OneStringToJson("SUCCESS"));
 				}
 			}
 		} catch (Exception ex) {
@@ -467,7 +447,6 @@ public class BaseController {
 		response.setCharacterEncoding("UTF-8");
 
 		int iResult = 0;
-		PrintWriter out = null;
 
 		try {
 			if (request.getParameter("param").trim().equals("") != true) {
@@ -482,9 +461,6 @@ public class BaseController {
 					model.addAttribute("path", request.getParameter("path"));
 					model.addAttribute("action", request.getParameter("action"));
 					model.addAttribute("message", "정상적으로 삭제 되었습니다.");
-
-					out = response.getWriter();
-					out.write(Util.OneStringToJson("SUCCESS"));
 				}
 			}
 		} catch (Exception ex) {
@@ -518,7 +494,6 @@ public class BaseController {
 		response.setCharacterEncoding("UTF-8");
 
 		int iResult = 0;
-		PrintWriter out = null;
 
 		try {
 			if (request.getParameter("param").trim().equals("") != true) {
@@ -533,9 +508,6 @@ public class BaseController {
 					model.addAttribute("path", request.getParameter("path"));
 					model.addAttribute("action", request.getParameter("action"));
 					model.addAttribute("message", "정상적으로 삭제 되었습니다.");
-
-					out = response.getWriter();
-					out.write(Util.OneStringToJson("SUCCESS"));
 				}
 			}
 		} catch (Exception ex) {
@@ -569,7 +541,6 @@ public class BaseController {
 		response.setCharacterEncoding("UTF-8");
 
 		int iResult = 0;
-		PrintWriter out = null;
 
 		try {
 			if (request.getParameter("param").trim().equals("") != true) {
@@ -584,9 +555,6 @@ public class BaseController {
 					model.addAttribute("path", request.getParameter("path"));
 					model.addAttribute("action", request.getParameter("action"));
 					model.addAttribute("message", "정상적으로 저장 되었습니다.");
-
-					out = response.getWriter();
-					out.write(Util.OneStringToJson("SUCCESS"));
 				}
 			}
 		} catch (Exception ex) {

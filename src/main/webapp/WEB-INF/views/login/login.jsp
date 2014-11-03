@@ -11,32 +11,34 @@
     <link href="" rel="stylesheet">
 
 	<script>
-	$("document").ready(function() {
-		console.log(<%=request.getParameter("param")%>); // 전달받은 param 값 확인(객체가 아니고 문자열임)
-	});
-
 	function action(actionType) {
 		switch (actionType) {
 		case 1: // 목록
 			break;
 		case 2: // 상세, 인증
+			var objParam = {};
+			objParam.userid   = frmLogin.userid.value;
+			objParam.password = frmLogin.password.value;
+			
 			$.ajax({
 				type : "POST",
-				url : "select/login.getLogin.do",
+				url : "login/login.getLogin.do",
 				dataType : "json",
 				data : {
-					"param" : JSON.stringify(<%=request.getParameter("param")%>)
+					"param" : JSON.stringify(objParam)
 				},
 				beforeSend : function(xhr) {
 					// 전송 전 Code
 				},
-				success : function(resultList) {
-					//resultList is array
-
-					alert("성공:" + resultList);
+				success : function(result) {
+					if (result.result == 'SUCCESS') {
+						console.log('로그인 성공');
+					} else {
+						console.log('로그인 실패');
+					}
 				},
 				error : function(error) {
-					alert("Error 발생");
+					alert("Error 발생:" + error);
 				}
 			});
 

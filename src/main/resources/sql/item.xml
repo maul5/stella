@@ -7,6 +7,6 @@
 	</select>
 	
 	<select id="getItem" parameterType="map" resultType="java.util.Map">
-		select * from item where itemid = ${itemid}
+		select * from item where itemid = #{itemid}
 	</select>
 </mapper>

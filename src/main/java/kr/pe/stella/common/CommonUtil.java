@@ -9,7 +9,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
- * 비지니스 공통 업무 - 요청 불필요시
+ * 비지니스 공통 업무 - HTTP Request 불필요시
  * 
  * @author jtpark
  *
