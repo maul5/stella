@@ -8,7 +8,7 @@
     <%@ include file="/WEB-INF/views/include/css.jsp"%>
 
     <!-- Custom CSS -->
-    <link href="resources/css/shop-homepage.css" rel="stylesheet">
+    <link href="" rel="stylesheet">
 
     <script>
     $("document").ready(function() {
@@ -69,7 +69,7 @@
 
 <body>
     <!-- 상단 Navigation -->
-    <%@include file="/WEB-INF/views/include/nav.jsp" %>
+    <%@include file="/WEB-INF/views/include/top.jsp" %>
     
     <!-- Page Content -->
     <div class="container">
@@ -110,7 +110,7 @@
 
                 </div>
 
-                <form id="form01" method="POST">
+                <form id="frm01" method="POST">
                 <%@ include file="/WEB-INF/views/include/hidden.jsp"%>
                 <div id="itemList" class="row">
                     <script id="itemListTpl" type="text/template">
@@ -120,7 +120,7 @@
                             <img src="resources/images/{{pictureurl}}" alt="{{itemname}}">
                             <div class="caption">
                                 <h4 class="pull-right">{{price}}</h4>
-                                <h4><a href="javascript:reqDirectPage('form01', 'item', 'itemDetail', { itemid:{{itemid}} })">{{itemname}}</a></h4>
+                                <h4><a href="javascript:reqDirectPage('frm01', 'item', 'itemDetail', { itemid:{{itemid}} })">{{itemname}}</a></h4>
                                 <p>{{description}}</p>
                             </div>
                             <div class="ratings">
@@ -137,15 +137,9 @@
                     </div>
                     {{/jsonList}}
                     </script>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <h4><a href="#">Like this template?</a>
-                        </h4>
-                        <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
-                        <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
-                    </div>
                 </div>
                 </form>
+                
             </div>
         </div>
     </div>

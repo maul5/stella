@@ -1,14 +1,75 @@
-#stella_info {
-	/* border-bottom:1px solid #cdcdcd; */
-	padding:19px 0 18px 4px;
-}
-
 #top {
-	background: #000 url('../images/sys/ic_details_grey600_18dp.png') no-repeat 7px 5px;
-	height: 40px;
-	width: 40px;
+    float:right;
+    background: #772953 url('../images/sys/ic_details_grey600_18dp.png') no-repeat 7px 5px;
+    height: 40px;
+    width: 40px;
     text-align: center;
     vertical-align:middle;
-	border-radius: 20px;
-	-moz-border-radius: 20px;
+    -moz-border-radius: 20px;
+         border-radius: 20px;
+}
+
+a.list-group-item { background:url(../images/sys/arrow-r.png) no-repeat 98% 45%; }
+
+a.list-group-item.on_color1:hover { background:#ed779e; }
+a.list-group-item.on_color2:hover { background:#f8af5a; }
+a.list-group-item.on_color3:hover { background:#35baae; }
+a.list-group-item.on_color4:hover { background:#b9b9da; }
+a.list-group-item.on_color5:hover { background:#c5d656; }
+a.list-group-item.on_color6:hover { background:#ed779e; }
+
+
+/*!
+ * Start Bootstrap - Shop Item HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+footer {
+    margin: 50px 0;
 }

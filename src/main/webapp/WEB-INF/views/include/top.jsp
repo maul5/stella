@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">로그인</a>
+                        <a href="javascript:reqDirectPage('frmNav', 'login', 'login', '')">로그인</a>
                     </li>
                     <li>
                         <a href="#">회원가입</a>
@@ -38,6 +38,9 @@
                     </li>
                 </ul>
             </div>
+            <form id="frmNav" name="frmNav" method="POST">
+                <%@include file="/WEB-INF/views/include/hidden.jsp"%>
+            </form>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->

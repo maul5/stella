@@ -15,12 +15,13 @@
     <%@ include file="/WEB-INF/views/include/css.jsp"%>
 
     <!-- Custom CSS -->
-    <link href="resources/css/shop-homepage.css" rel="stylesheet">
+    <link href="" rel="stylesheet">
+    
 </head>
 
 <body>
     <!-- 상단 Navigation -->
-    <%@include file="/WEB-INF/views/include/nav.jsp" %>
+    <%@include file="/WEB-INF/views/include/top.jsp" %>
 
     <!-- Page Content -->
     <div class="container">
