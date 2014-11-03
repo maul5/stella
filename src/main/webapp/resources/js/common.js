@@ -5,15 +5,15 @@
  * @param file
  * @param param
  */
-function direct_view(path, file, param) {
+function reqDirectPage(formname, path, file, param) {
 	$("input[name=param]").val(JSON.stringify(param));
 	$("input[name=path]").val("/" + path + "/" + file);
-	$("#frmNav").attr({
-		action : "/stella/direct_view.do",
+	$("#" + formname).attr({
+		action : "reqDirectPage.do",
 		target : "_self"
 	});
 
-	$("#frmNav").submit();
+	$("#" + formname).submit();
 }
 
 /**

@@ -1,116 +1,157 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Stella</title>
+    <%@ include file="/WEB-INF/views/include/head.jsp" %>
+    <%@ include file="/WEB-INF/views/include/script.jsp" %>
+    <%@ include file="/WEB-INF/views/include/css.jsp"%>
 
-<%@ include file="/WEB-INF/views/include/css.jsp"%>
+    <!-- Custom CSS -->
+    <link href="resources/css/shop-homepage.css" rel="stylesheet">
 
+    <script>
+    $("document").ready(function() {
+        <%-- test(); --%>
+        action(1);
+    });
+
+    function action(actionType) {
+        switch (actionType) {
+        case 1: // 목록
+            $.ajax({ type : "POST",
+                url : "select/item.getListItem.do",
+                dataType : "json",
+                data : {"param" : ''},
+                beforeSend : function(xhr) {
+                    // 전송 전 Code
+                },
+                success : function(resultList) {
+                    //resultList is array
+                    var jsonList = {'jsonList':resultList}
+                    //jsonList is JSON
+                    var itemListTpl = $("#itemListTpl").html();
+                    var html = Mustache.render(itemListTpl, jsonList);
+                    $("#itemList").html(html);
+                },
+                error : function(error) {
+                     alert("Error 발생");
+                }
+            });
+
+            break;
+        }
+    }
+
+    <%--
+    function test() {
+        var arr =["a", "b", "c"];
+        
+        var str = JSON.stringify(arr);
+        console.log(str);
+
+        var newArr = JSON.parse(str);
+
+        while (newArr.length > 0) {
+            console.log(newArr.pop());
+        }
+        
+        var employees = [
+                         {"firstName":"John", "lastName":"Doe"}, 
+                         {"firstName":"Anna", "lastName":"Smith"}, 
+                         {"firstName":"Peter", "lastName": "Jones"}
+                        ];
+        console.log(employees[0].firstName + " " + employees[0].lastName);
+    }
+    --%>
+    </script>
 </head>
 
 <body>
-	<header>
-		<h1>상품 리스트 화면</h1>
-	</header>
-	<%@ include file="/WEB-INF/views/include/nav.jsp" %>
-	<section>
-		<form id="frm01" method="POST">
-			<%@ include file="/WEB-INF/views/include/hidden.jsp"%>
-			<article>
-				<h2>상품 리스트 화면</h2>
-				<table id="list" border="1">
-					<tr class="header">
-						<th align="center" width="100">상품 ID</th>
-						<th align="center" width="320">상품 명</th>
-						<th align="center" width="100">가격(원)</th>
-					</tr>
-				</table>
-			</article>
-		</form>
-	</section>
-	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+    <!-- 상단 Navigation -->
+    <%@include file="/WEB-INF/views/include/nav.jsp" %>
+    
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+        
+            <%@include file="/WEB-INF/views/include/left.jsp" %>
 
-<%@ include file="/WEB-INF/views/include/script.jsp"%>
+            <div class="col-md-9">
 
-<script>
-	$("document").ready(function() {
-		test();
-		
-		action(1);
-	});
+                <div class="row carousel-holder">
 
-	function action(actionType) {
-		switch (actionType) {
-		case 1: // 목록
-			$.ajax({ type : "POST",
-				url : "select/item.getListItem.do",
-				dataType : "json",
-				data : {"param" : ''},
-				beforeSend : function(xhr) {
-					// 전송 전 Code
-				},
-				success : function(resultList) {
-					$.each(resultList, function() {
-						console.log(this.itemid + " | " + this.itemname + " | " + this.price);
-						/*
-						<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						</tr>
-						*/
-						var td1 = document.createElement("td"); //상품 ID
-						td1.innerHTML = this.itemid;
-						var td2 = document.createElement("td"); //상품명
-						var path = "item";
-						var file = "itemDetail";
-						var param = "{itemid:\'" + this.itemid + "\'}";
-						td2.innerHTML = '<a href="javascript:direct_view(\'' + path + '\', \'' + file + '\', ' + param + ')">' + this.itemname + '</a>';
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="slide-image" src="resources/images/main_item/IMG_0010.jpg" alt=""> <!-- 800x300 -->
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="resources/images/main_item/IMG_0028.jpg" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="resources/images/main_item/IMG_0279.jpg" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
 
-						var td3 = document.createElement("td"); //가격(원)
-						td3.innerHTML = this.price;
-						
-						var tr = document.createElement("tr");
-						tr.appendChild(td1);
-						tr.appendChild(td2);
-						tr.appendChild(td3);
-						
-						$("#list").append(tr);
-					});
-				},
-				error : function(error) {
-				 	alert("Error 발생");
-				}
-			});
+                </div>
 
-			break;
-		}
-	}
-	
-	function test() {
-		var arr =["a", "b", "c"];
-		
-		var str = JSON.stringify(arr);
-		console.log(str);
+                <form id="form01" method="POST">
+                <%@ include file="/WEB-INF/views/include/hidden.jsp"%>
+                <div id="itemList" class="row">
+                    <script id="itemListTpl" type="text/template">
+                    {{#jsonList}}
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="resources/images/{{pictureurl}}" alt="{{itemname}}">
+                            <div class="caption">
+                                <h4 class="pull-right">{{price}}</h4>
+                                <h4><a href="javascript:reqDirectPage('form01', 'item', 'itemDetail', { itemid:{{itemid}} })">{{itemname}}</a></h4>
+                                <p>{{description}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">15 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {{/jsonList}}
+                    </script>
 
-		var newArr = JSON.parse(str);
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <h4><a href="#">Like this template?</a>
+                        </h4>
+                        <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
+                        <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
 
-		while (newArr.length > 0) {
-			console.log(newArr.pop());
-		}
-		
-		var employees = [
-		                 {"firstName":"John", "lastName":"Doe"}, 
-		                 {"firstName":"Anna", "lastName":"Smith"}, 
-		                 {"firstName":"Peter", "lastName": "Jones"}
-		             ];
-		console.log(employees[0].firstName + " " + employees[0].lastName);
-		
-		
-	}
-</script>
+    <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 
 </body>
 </html>

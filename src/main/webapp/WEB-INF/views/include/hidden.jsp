@@ -1,5 +1,4 @@
 <%@ page pageEncoding="UTF-8"%>
-
 <!-- Action -->
 <input type="hidden" id="param"  name="param"/>
 <input type="hidden" id="action" name="action"/>

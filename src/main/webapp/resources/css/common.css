@@ -1,0 +1,14 @@
+#stella_info {
+	/* border-bottom:1px solid #cdcdcd; */
+	padding:19px 0 18px 4px;
+}
+
+#top {
+	background: #000 url('../images/sys/ic_details_grey600_18dp.png') no-repeat 7px 5px;
+	height: 40px;
+	width: 40px;
+    text-align: center;
+    vertical-align:middle;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+}
