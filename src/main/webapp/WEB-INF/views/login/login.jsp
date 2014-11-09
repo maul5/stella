@@ -20,6 +20,25 @@
 			objParam.userid   = frmLogin.userid.value;
 			objParam.password = frmLogin.password.value;
 			
+			var jqxhr = $.ajax({
+				type : "POST",
+				url :"login/login.getLogin.do",
+				dataType : "json",
+				data : {"param" : JSON.stringify(objParam)}
+			})
+			.done(function(data, textStatus, jqXHR){
+				if (data.result == "SUCCESS") {
+					console.log("로그인 성공");
+				} else {
+					console.log("로그인 실패");
+				}
+			})
+			.fail(function(jqXHR, textStatus, errorThrown){
+				alert("Error 발생:" + error);
+			})
+			;
+			
+			/* old coding style
 			$.ajax({
 				type : "POST",
 				url : "login/login.getLogin.do",
@@ -30,17 +49,18 @@
 				beforeSend : function(xhr) {
 					// 전송 전 Code
 				},
-				success : function(result) {
-					if (result.result == 'SUCCESS') {
-						console.log('로그인 성공');
+				done : function(data) {
+					if (data.result == "SUCCESS") {
+						console.log("로그인 성공");
 					} else {
-						console.log('로그인 실패');
+						console.log("로그인 실패");
 					}
 				},
-				error : function(error) {
+				fail : function(error) {
 					alert("Error 발생:" + error);
 				}
 			});
+			*/
 
 			break;
 		}

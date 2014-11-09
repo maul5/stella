@@ -70,4 +70,41 @@ public class CommonUtil {
 		}
 	}
 	
+	/**
+	 * requset.getParameter()으로 받은 값 중에 스크립트 실행이 되는 기호를 일반 스트링으로 변환 
+	 * 크로스사이트 스크립트 방지
+	 * 
+	 * @param param
+	 * @return
+	 */
+	public static String replaceTagFromParam(String param) {
+		String result = null;
+		if (param != null && !"".equals(param)) {
+			result = new String(param);
+			result = result.replaceAll("<", "&lt;");
+			result = result.replaceAll(">", "&gt;");
+			result = result.replaceAll("&", "&amp;");
+			result = result.replaceAll("\"", "&quot;");
+		}
+		return result;
+	}
+	
+	/**
+	 * 파일 업로드시 경로 조작 경로조작 및 자원 삽입 방지를 위해 경로에 사용되는 기호 없애기
+	 * 
+	 * @param param
+	 * @return
+	 */
+	public static String replaceULIFromPath(String fileName) {
+		String result = null;
+		if (fileName != null && !"".equals(fileName)) {
+			result = new String(fileName);
+			result = result.replaceAll("/", "");
+			result = result.replaceAll("\\", "");
+			result = result.replaceAll(".", "");
+			result = result.replaceAll("&", "");
+		}
+		
+		return result;
+	}
 }
