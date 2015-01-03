@@ -1,2 +1,0 @@
-이것은 sublime text와 github
-연동하는 테스트 파일입니다.
